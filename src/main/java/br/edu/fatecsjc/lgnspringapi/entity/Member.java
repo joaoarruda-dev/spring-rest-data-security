@@ -3,6 +3,8 @@ package br.edu.fatecsjc.lgnspringapi.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -18,6 +20,15 @@ public class Member {
     private Long id;
     private String name;
     private Integer age;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "member_marathons",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "marathon_id")
+    )
+    private List<Marathon> marathons;
+
     @ManyToOne
     @JoinColumn(name="group_id", nullable=false)
     private Group group;

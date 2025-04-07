@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,5 +23,10 @@ public class Group {
     private Long id;
     private String name;
     @OneToMany(mappedBy="group", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Member> members;
+    private List<Member> members = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "organization_id", nullable = false)
+    private Organization organization;
 }
