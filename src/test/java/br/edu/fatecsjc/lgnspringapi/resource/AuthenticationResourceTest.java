@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-public class AuthenticationResourceTest {
+class AuthenticationResourceTest {
 
     @Mock
     private AuthenticationService authenticationService;
@@ -31,12 +31,12 @@ public class AuthenticationResourceTest {
     private AuthenticationResource authenticationResource;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testRegister() {
+    void testRegister() {
         RegisterRequestDTO request = new RegisterRequestDTO();
         AuthenticationResponseDTO responseDTO = new AuthenticationResponseDTO();
         when(authenticationService.register(any(RegisterRequestDTO.class))).thenReturn(responseDTO);
@@ -48,7 +48,7 @@ public class AuthenticationResourceTest {
     }
 
     @Test
-    public void testAuthenticate() {
+    void testAuthenticate() {
         AuthenticationRequestDTO request = new AuthenticationRequestDTO();
         AuthenticationResponseDTO responseDTO = new AuthenticationResponseDTO();
         when(authenticationService.authenticate(any(AuthenticationRequestDTO.class))).thenReturn(responseDTO);
@@ -60,12 +60,10 @@ public class AuthenticationResourceTest {
     }
 
     @Test
-    public void testRefreshToken() throws IOException {
-        HttpServletRequest request = null;
-        HttpServletResponse response = null;
+    void testRefreshToken() throws IOException {
         doNothing().when(authenticationService).refreshToken(any(HttpServletRequest.class), any(HttpServletResponse.class));
 
-        ResponseEntity<Void> responseEntity = authenticationResource.refreshToken(request, response);
+        ResponseEntity<Void> responseEntity = authenticationResource.refreshToken(null, null);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }

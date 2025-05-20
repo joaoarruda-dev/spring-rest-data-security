@@ -16,7 +16,7 @@ import java.security.Principal;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class UserServiceTest {
+class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
@@ -30,7 +30,7 @@ public class UserServiceTest {
     private Principal principal;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         User user = new User();
         user.setPassword("encodedCurrentPassword");
@@ -38,7 +38,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testChangePassword_Success() {
+    void testChangePassword_Success() {
         User user = (User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         user.setPassword("encodedCurrentPassword");
 
@@ -57,7 +57,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testChangePassword_WrongCurrentPassword() {
+    void testChangePassword_WrongCurrentPassword() {
         User user = (User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         user.setPassword("encodedCurrentPassword");
 
@@ -77,7 +77,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testChangePassword_PasswordsDoNotMatch() {
+    void testChangePassword_PasswordsDoNotMatch() {
         User user = (User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         user.setPassword("encodedCurrentPassword");
 

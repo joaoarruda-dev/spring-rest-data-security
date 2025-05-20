@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class OrganizationResourceTest {
+class OrganizationResourceTest {
 
     @Mock
     private OrganizationService organizationService;
@@ -26,12 +26,12 @@ public class OrganizationResourceTest {
     private OrganizationResource organizationResource;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testCreateOrganization() {
+    void testCreateOrganization() {
         OrganizationDTO request = new OrganizationDTO();
         OrganizationDTO responseDTO = new OrganizationDTO();
         when(organizationService.createOrganization(any(OrganizationDTO.class))).thenReturn(responseDTO);
@@ -43,7 +43,7 @@ public class OrganizationResourceTest {
     }
 
     @Test
-    public void testGetAllOrganizations() {
+    void testGetAllOrganizations() {
         List<OrganizationDTO> responseDTOList = Collections.singletonList(new OrganizationDTO());
         when(organizationService.getAllOrganizations()).thenReturn(responseDTOList);
 
@@ -54,7 +54,7 @@ public class OrganizationResourceTest {
     }
 
     @Test
-    public void testGetOrganizationById() {
+    void testGetOrganizationById() {
         Long organizationId = 1L;
         OrganizationDTO responseDTO = new OrganizationDTO();
         when(organizationService.getOrganizationById(organizationId)).thenReturn(responseDTO);
@@ -66,7 +66,7 @@ public class OrganizationResourceTest {
     }
 
     @Test
-    public void testUpdateOrganization() {
+    void testUpdateOrganization() {
         Long organizationId = 1L;
         OrganizationDTO request = new OrganizationDTO();
         OrganizationDTO responseDTO = new OrganizationDTO();
@@ -79,7 +79,7 @@ public class OrganizationResourceTest {
     }
 
     @Test
-    public void testDeleteOrganization() {
+    void testDeleteOrganization() {
         Long organizationId = 1L;
 
         ResponseEntity<Void> response = organizationResource.deleteOrganization(organizationId);

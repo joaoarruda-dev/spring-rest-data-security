@@ -20,6 +20,10 @@
 		<springdoc.version>2.2.0</springdoc.version>
 		<sonar.organization>joaoarruda-dev</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
+		<sonar.projectKey>joaoarruda-dev_spring-rest-data-security</sonar.projectKey>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.exclusions>**/config/**,**/dto/**, **/converter/**</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -156,9 +160,13 @@
 			</build>
 		</profile>
 	</profiles>
-
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.1.2184</version>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -173,5 +181,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

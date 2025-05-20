@@ -16,7 +16,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class OrganizationServiceTest {
+class OrganizationServiceTest {
 
     @InjectMocks
     private OrganizationService organizationService;
@@ -25,12 +25,12 @@ public class OrganizationServiceTest {
     private OrganizationRepository organizationRepository;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testCreateOrganization() {
+    void testCreateOrganization() {
         Organization organization = new Organization();
         organization.setId(1L);
         organization.setName("Organization 1");
@@ -45,7 +45,7 @@ public class OrganizationServiceTest {
     }
 
     @Test
-    public void testGetAllOrganizations() {
+    void testGetAllOrganizations() {
         Organization organization = new Organization();
         organization.setId(1L);
         organization.setName("Organization 1");
@@ -59,7 +59,7 @@ public class OrganizationServiceTest {
     }
 
     @Test
-    public void testGetOrganizationById() {
+    void testGetOrganizationById() {
         Organization organization = new Organization();
         organization.setId(1L);
         organization.setName("Organization 1");
@@ -72,7 +72,7 @@ public class OrganizationServiceTest {
     }
 
     @Test
-    public void testUpdateOrganization() {
+    void testUpdateOrganization() {
         Organization organization = new Organization();
         organization.setId(1L);
         organization.setName("Organization 1");
@@ -88,7 +88,7 @@ public class OrganizationServiceTest {
     }
 
     @Test
-    public void testDeleteOrganization() {
+    void testDeleteOrganization() {
         doNothing().when(organizationRepository).deleteById(1L);
 
         organizationService.deleteOrganization(1L);

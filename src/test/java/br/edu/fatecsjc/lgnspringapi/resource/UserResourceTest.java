@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 
-public class UserResourceTest {
+class UserResourceTest {
 
     @Mock
     private UserService userService;
@@ -28,12 +28,12 @@ public class UserResourceTest {
     private Principal principal;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testChangePassword() {
+    void testChangePassword() {
         ChangePasswordRequestDTO request = new ChangePasswordRequestDTO();
         doNothing().when(userService).changePassword(any(ChangePasswordRequestDTO.class), any(Principal.class));
 

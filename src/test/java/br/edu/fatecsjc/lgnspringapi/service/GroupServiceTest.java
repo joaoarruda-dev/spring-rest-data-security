@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-public class GroupServiceTest {
+class GroupServiceTest {
 
     @Mock
     private GroupRepository groupRepository;
@@ -34,12 +34,12 @@ public class GroupServiceTest {
     private GroupService groupService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetAll() {
+    void testGetAll() {
         List<Group> groups = Arrays.asList(new Group(), new Group());
         List<GroupDTO> groupDTOs = Arrays.asList(new GroupDTO(), new GroupDTO());
 
@@ -54,7 +54,7 @@ public class GroupServiceTest {
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         Long id = 1L;
         Group group = new Group();
         GroupDTO groupDTO = new GroupDTO();
@@ -68,7 +68,7 @@ public class GroupServiceTest {
     }
 
     @Test
-    public void testSaveWithId() {
+    void testSaveWithId() {
         Long id = 1L;
         GroupDTO groupDTO = new GroupDTO();
         Group group = new Group();
@@ -85,7 +85,7 @@ public class GroupServiceTest {
     }
 
     @Test
-    public void testSaveWithoutId() {
+    void testSaveWithoutId() {
         GroupDTO groupDTO = new GroupDTO();
         Group group = new Group();
 
@@ -99,7 +99,7 @@ public class GroupServiceTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         Long id = 1L;
 
         doNothing().when(groupRepository).deleteById(id);

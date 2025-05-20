@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class MarathonServiceTest {
+class MarathonServiceTest {
 
     @InjectMocks
     private MarathonService marathonService;
@@ -31,12 +31,12 @@ public class MarathonServiceTest {
     private MemberRepository memberRepository;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetAllMarathons() {
+    void testGetAllMarathons() {
         Marathon marathon = new Marathon();
         marathon.setId(1L);
         marathon.setName("Marathon 1");
@@ -52,7 +52,7 @@ public class MarathonServiceTest {
     }
 
     @Test
-    public void testGetMarathonById() {
+    void testGetMarathonById() {
         Marathon marathon = new Marathon();
         marathon.setId(1L);
         marathon.setName("Marathon 1");
@@ -67,7 +67,7 @@ public class MarathonServiceTest {
     }
 
     @Test
-    public void testCreateMarathonWithoutMembers() {
+    void testCreateMarathonWithoutMembers() {
         Marathon marathon = new Marathon();
         marathon.setId(1L);
         marathon.setName("Marathon 1");
@@ -83,7 +83,7 @@ public class MarathonServiceTest {
     }
 
     @Test
-    public void testUpdateMarathon() {
+    void testUpdateMarathon() {
         Marathon marathon = new Marathon();
         marathon.setId(1L);
         marathon.setName("Marathon 1");
@@ -100,7 +100,7 @@ public class MarathonServiceTest {
     }
 
     @Test
-    public void testAddMembersToMarathon() {
+    void testAddMembersToMarathon() {
         Marathon marathon = new Marathon();
         marathon.setId(1L);
         marathon.setName("Marathon 1");
@@ -121,7 +121,7 @@ public class MarathonServiceTest {
     }
 
     @Test
-    public void testDeleteMarathon() {
+    void testDeleteMarathon() {
         doNothing().when(marathonRepository).deleteById(1L);
 
         marathonService.deleteMarathon(1L);

@@ -24,8 +24,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.PrintWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -67,12 +65,12 @@ class AuthenticationServiceTest {
 
     @Test
     void testRegister() {
-        RegisterRequestDTO request = new RegisterRequestDTO();
-        request.setFirstname("Joao");
-        request.setLastname("Arruda");
-        request.setEmail("joaoarruda@example.com");
-        request.setPassword("password");
-        request.setRole(Role.USER);
+        RegisterRequestDTO requestObj = new RegisterRequestDTO();
+        requestObj.setFirstname("Joao");
+        requestObj.setLastname("Arruda");
+        requestObj.setEmail("joaoarruda@example.com");
+        requestObj.setPassword("password");
+        requestObj.setRole(Role.USER);
 
         User user = User.builder()
                 .firstName("Joao")
@@ -87,19 +85,19 @@ class AuthenticationServiceTest {
         when(jwtService.generateToken(any(User.class))).thenReturn("jwtToken");
         when(jwtService.generateRefreshToken(any(User.class))).thenReturn("refreshToken");
 
-        AuthenticationResponseDTO response = authenticationService.register(request);
+        AuthenticationResponseDTO responseObj = authenticationService.register(requestObj);
 
-        assertEquals("jwtToken", response.getAccessToken());
-        assertEquals("refreshToken", response.getRefreshToken());
+        assertEquals("jwtToken", responseObj.getAccessToken());
+        assertEquals("refreshToken", responseObj.getRefreshToken());
         verify(userRepository, times(1)).save(any(User.class));
         verify(tokenRepository, times(1)).save(any());
     }
 
     @Test
     void testAuthenticate() {
-        AuthenticationRequestDTO request = new AuthenticationRequestDTO();
-        request.setEmail("joaoarruda@example.com");
-        request.setPassword("password");
+        AuthenticationRequestDTO requestObj = new AuthenticationRequestDTO();
+        requestObj.setEmail("joaoarruda@example.com");
+        requestObj.setPassword("password");
 
         User user = User.builder()
                 .firstName("Joao")
@@ -113,10 +111,10 @@ class AuthenticationServiceTest {
         when(jwtService.generateToken(any(User.class))).thenReturn("jwtToken");
         when(jwtService.generateRefreshToken(any(User.class))).thenReturn("refreshToken");
 
-        AuthenticationResponseDTO response = authenticationService.authenticate(request);
+        AuthenticationResponseDTO responseObj = authenticationService.authenticate(requestObj);
 
-        assertEquals("jwtToken", response.getAccessToken());
-        assertEquals("refreshToken", response.getRefreshToken());
+        assertEquals("jwtToken", responseObj.getAccessToken());
+        assertEquals("refreshToken", responseObj.getRefreshToken());
         verify(authenticationManager, times(1)).authenticate(any());
         verify(tokenRepository, times(1)).save(any());
     }
@@ -153,7 +151,7 @@ class AuthenticationServiceTest {
 
             @Override
             public void setWriteListener(WriteListener listener) {
-
+                // Implement the logic for setting the WriteListener if needed.
             }
 
             @Override
@@ -185,7 +183,7 @@ class AuthenticationServiceTest {
 
             @Override
             public void setWriteListener(WriteListener listener) {
-
+                // Implement the logic for setting the WriteListener if needed.
             }
 
             @Override
@@ -284,7 +282,7 @@ class AuthenticationServiceTest {
     }
 
     @Test
-    void testRefreshToken_ValidAuthHeader_InvalidUser() throws Exception {
+    void testRefreshToken_ValidAuthHeader_InvalidUser() {
         String refreshToken = "refreshToken";
         String userEmail = "joaoarruda@example.com";
 

@@ -6,17 +6,19 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class GroupConverter implements Converter<Group, GroupDTO> {
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     private TypeMap<GroupDTO, Group> propertyMapperDto;
+
+    public GroupConverter(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public Group convertToEntity(GroupDTO dto) {
@@ -29,9 +31,7 @@ public class GroupConverter implements Converter<Group, GroupDTO> {
         Provider<Group> groupProvider = p -> new Group();
         propertyMapperDto.setProvider(groupProvider);
 
-        entity.getMembers().forEach(m -> {
-            m.setGroup(entity);
-        });
+        entity.getMembers().forEach(m -> m.setGroup(entity));
         return entity;
     }
 
@@ -46,9 +46,7 @@ public class GroupConverter implements Converter<Group, GroupDTO> {
         propertyMapperDto.setProvider(groupProvider);
 
         Group newEntity = modelMapper.map(dto, Group.class);
-        newEntity.getMembers().forEach(member -> {
-            member.setGroup(newEntity);
-        });
+        newEntity.getMembers().forEach(member -> member.setGroup(newEntity));
         return newEntity;
     }
 
@@ -60,11 +58,7 @@ public class GroupConverter implements Converter<Group, GroupDTO> {
     @Override
     public List<Group> convertToEntity(List<GroupDTO> dtos) {
         List<Group> groups = modelMapper.map(dtos, new TypeToken<List<Group>>(){}.getType());
-        groups.forEach(group -> {
-            group.getMembers().forEach(member -> {
-                member.setGroup(group);
-            });
-        });
+        groups.forEach(group -> group.getMembers().forEach(member -> member.setGroup(group)));
         return groups;
     }
 

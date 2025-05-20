@@ -1,6 +1,5 @@
 package br.edu.fatecsjc.lgnspringapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
