@@ -1,7 +1,6 @@
 package br.edu.fatecsjc.lgnspringapi.service;
 
 import br.edu.fatecsjc.lgnspringapi.dto.MarathonDTO;
-import br.edu.fatecsjc.lgnspringapi.dto.SimpleMemberDTO;
 import br.edu.fatecsjc.lgnspringapi.entity.Marathon;
 import br.edu.fatecsjc.lgnspringapi.entity.Member;
 import br.edu.fatecsjc.lgnspringapi.repository.MarathonRepository;
