@@ -48,7 +48,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn clean verify -Pcoverage \
-          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dorg.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey=joaoarruda-dev_spring-rest-data-security \
           -Dsonar.organization=joaoarruda-dev \
           -Dsonar.host.url=https://sonarcloud.io \
