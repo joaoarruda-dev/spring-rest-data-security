@@ -12,7 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestPropertySource(properties = "server.port=8000")
-public class RootResourceTest {
+class RootResourceTest {
 
     @InjectMocks
     private RootResource rootResource;
@@ -21,12 +21,12 @@ public class RootResourceTest {
     private String port;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testValidateRestResource() {
+    void testValidateRestResource() {
         String expectedMessage = new StringBuilder()
                 .append("Bem-vindo, APIs operacionais. ")
                 .append(String.format("Acesse: <a href=\"http://localhost:%s/swagger-ui/index.html\">", port))

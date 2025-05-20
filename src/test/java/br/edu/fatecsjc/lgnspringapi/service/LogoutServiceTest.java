@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-public class LogoutServiceTest {
+class LogoutServiceTest {
 
     @Mock
     private TokenRepository tokenRepository;
@@ -36,12 +36,12 @@ public class LogoutServiceTest {
     private LogoutService logoutService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testLogoutWithValidToken() {
+    void testLogoutWithValidToken() {
         String token = "Bearer validToken";
         Token storedToken = new Token();
         when(request.getHeader("Authorization")).thenReturn(token);
@@ -57,7 +57,7 @@ public class LogoutServiceTest {
     }
 
     @Test
-    public void testLogoutWithInvalidToken() {
+    void testLogoutWithInvalidToken() {
         String token = "Bearer invalidToken";
         when(request.getHeader("Authorization")).thenReturn(token);
         when(tokenRepository.findByToken("invalidToken")).thenReturn(Optional.empty());
@@ -70,7 +70,7 @@ public class LogoutServiceTest {
     }
 
     @Test
-    public void testLogoutWithoutAuthorizationHeader() {
+    void testLogoutWithoutAuthorizationHeader() {
         when(request.getHeader("Authorization")).thenReturn(null);
 
         logoutService.logout(request, response, authentication);

@@ -14,10 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class GroupResourceTest {
+class GroupResourceTest {
 
     @Mock
     private GroupService groupService;
@@ -26,12 +25,12 @@ public class GroupResourceTest {
     private GroupResource groupResource;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetAllGroups() {
+    void testGetAllGroups() {
         List<GroupDTO> responseDTOList = Collections.singletonList(new GroupDTO());
         when(groupService.getAll()).thenReturn(responseDTOList);
 
@@ -42,7 +41,7 @@ public class GroupResourceTest {
     }
 
     @Test
-    public void testGetGroupById() {
+    void testGetGroupById() {
         Long groupId = 1L;
         GroupDTO responseDTO = new GroupDTO();
         when(groupService.findById(groupId)).thenReturn(responseDTO);
@@ -54,7 +53,7 @@ public class GroupResourceTest {
     }
 
     @Test
-    public void testUpdateGroup() {
+    void testUpdateGroup() {
         Long groupId = 1L;
         GroupDTO request = new GroupDTO();
         GroupDTO responseDTO = new GroupDTO();
@@ -67,7 +66,7 @@ public class GroupResourceTest {
     }
 
     @Test
-    public void testRegisterGroup() {
+    void testRegisterGroup() {
         GroupDTO request = new GroupDTO();
         GroupDTO responseDTO = new GroupDTO();
         when(groupService.save(request)).thenReturn(responseDTO);
@@ -79,7 +78,7 @@ public class GroupResourceTest {
     }
 
     @Test
-    public void testDeleteGroup() {
+    void testDeleteGroup() {
         Long groupId = 1L;
 
         ResponseEntity<Void> response = groupResource.update(groupId);

@@ -3,18 +3,19 @@ package br.edu.fatecsjc.lgnspringapi.service;
 import br.edu.fatecsjc.lgnspringapi.dto.OrganizationDTO;
 import br.edu.fatecsjc.lgnspringapi.entity.Organization;
 import br.edu.fatecsjc.lgnspringapi.repository.OrganizationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class OrganizationService {
 
-    @Autowired
-    private OrganizationRepository organizationRepository;
+    private final OrganizationRepository organizationRepository;
+
+    public OrganizationService(OrganizationRepository organizationRepository) {
+        this.organizationRepository = organizationRepository;
+    }
 
     public OrganizationDTO createOrganization(OrganizationDTO organizationDTO) {
         Organization organization = mapToEntity(organizationDTO);
@@ -25,7 +26,7 @@ public class OrganizationService {
     public List<OrganizationDTO> getAllOrganizations() {
         return organizationRepository.findAll().stream()
                 .map(this::mapToDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public OrganizationDTO getOrganizationById(Long id) {

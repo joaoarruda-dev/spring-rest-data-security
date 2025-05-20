@@ -27,13 +27,13 @@ public class JwtServiceTest {
 
     private String secretKey = "bXlzZWNyZXRrZXlteXNlY3JldGtleW15c2VjcmV0a2V5bXlzZWNyZXRrZXk=";
     private long jwtExpiration = 1000 * 60 * 60;
-    private long refreshExpiration = 1000 * 60 * 60 * 24 * 7;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         jwtService.secretKey = secretKey;
         jwtService.jwtExpiration = jwtExpiration;
-        jwtService.refreshExpiration = refreshExpiration;
+        jwtService.refreshExpiration = 1000 * 60 * 60 * 24 * 7;
     }
 
     @Test
