@@ -36,9 +36,9 @@ public class MarathonService {
                                         member.getId(),
                                         member.getName()
                                 ))
-                                .collect(Collectors.toList())
+                                .toList()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public MarathonDTO getMarathonById(Long id) {
@@ -92,7 +92,7 @@ public class MarathonService {
                                             member.getId(),
                                             member.getName()
                                     ))
-                                    .collect(Collectors.toList())
+                                    .toList()
                     );
                 })
                 .orElse(null);
@@ -114,7 +114,7 @@ public class MarathonService {
                                             member.getId(),
                                             member.getName()
                                     ))
-                                    .collect(Collectors.toList())
+                                    .toList()
                     );
                 })
                 .orElse(null);

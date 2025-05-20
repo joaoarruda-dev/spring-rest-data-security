@@ -1,6 +1,5 @@
 package br.edu.fatecsjc.lgnspringapi.service;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -17,7 +16,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class JwtServiceTest {
+class JwtServiceTest {
 
     @InjectMocks
     private JwtService jwtService;
@@ -25,11 +24,11 @@ public class JwtServiceTest {
     @Mock
     private UserDetails userDetails;
 
-    private String secretKey = "bXlzZWNyZXRrZXlteXNlY3JldGtleW15c2VjcmV0a2V5bXlzZWNyZXRrZXk=";
-    private long jwtExpiration = 1000 * 60 * 60;
+    private final String secretKey = "bXlzZWNyZXRrZXlteXNlY3JldGtleW15c2VjcmV0a2V5bXlzZWNyZXRrZXk=";
+    private final long jwtExpiration = 1000 * 60 * 60;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
         jwtService.secretKey = secretKey;
         jwtService.jwtExpiration = jwtExpiration;
@@ -37,7 +36,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void testExtractUsername() {
+    void testExtractUsername() {
         when(userDetails.getUsername()).thenReturn("testuser");
         String token = jwtService.generateToken(userDetails);
 
@@ -47,7 +46,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void testGenerateToken() {
+    void testGenerateToken() {
         when(userDetails.getUsername()).thenReturn("testuser");
 
         String token = jwtService.generateToken(userDetails);
@@ -56,7 +55,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void testGenerateRefreshToken() {
+    void testGenerateRefreshToken() {
         when(userDetails.getUsername()).thenReturn("testuser");
 
         String token = jwtService.generateRefreshToken(userDetails);
@@ -65,7 +64,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void testIsTokenValid() {
+    void testIsTokenValid() {
         when(userDetails.getUsername()).thenReturn("testuser");
 
         String token = jwtService.generateToken(userDetails);
@@ -76,7 +75,7 @@ public class JwtServiceTest {
     }
 
     @Test
-    public void testIsTokenExpired() {
+    void testIsTokenExpired() {
         String token = Jwts.builder()
                 .setSubject("testuser")
                 .setIssuedAt(new Date(System.currentTimeMillis() - jwtExpiration - 1000))
