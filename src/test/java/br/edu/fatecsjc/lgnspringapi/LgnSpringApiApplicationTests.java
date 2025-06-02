@@ -1,8 +1,11 @@
 package br.edu.fatecsjc.lgnspringapi;
 
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
-@SpringBootTest
 class LgnSpringApiApplicationTests {
 
+    @Test
+    void testMain() {
+        LgnSpringApiApplication.main(new String[]{});
+    }
 }

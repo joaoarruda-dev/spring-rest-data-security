@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,13 +49,23 @@ class OrganizationServiceTest {
         Organization organization = new Organization();
         organization.setId(1L);
         organization.setName("Organization 1");
-        when(organizationRepository.findAll()).thenReturn(Arrays.asList(organization));
+        when(organizationRepository.findAll()).thenReturn(List.of(organization));
 
         List<OrganizationDTO> organizations = organizationService.getAllOrganizations();
 
         assertNotNull(organizations);
         assertEquals(1, organizations.size());
         assertEquals("Organization 1", organizations.get(0).getName());
+    }
+
+    @Test
+    void testGetAllOrganizationsEmpty() {
+        when(organizationRepository.findAll()).thenReturn(Collections.emptyList());
+
+        List<OrganizationDTO> organizations = organizationService.getAllOrganizations();
+
+        assertNotNull(organizations);
+        assertTrue(organizations.isEmpty());
     }
 
     @Test
@@ -72,6 +82,15 @@ class OrganizationServiceTest {
     }
 
     @Test
+    void testGetOrganizationByIdNotFound() {
+        when(organizationRepository.findById(1L)).thenReturn(Optional.empty());
+
+        OrganizationDTO organizationDTO = organizationService.getOrganizationById(1L);
+
+        assertNull(organizationDTO);
+    }
+
+    @Test
     void testUpdateOrganization() {
         Organization organization = new Organization();
         organization.setId(1L);
@@ -85,6 +104,17 @@ class OrganizationServiceTest {
 
         assertNotNull(updatedOrganization);
         assertEquals("Updated Organization", updatedOrganization.getName());
+    }
+
+    @Test
+    void testUpdateOrganizationNotFound() {
+        when(organizationRepository.findById(1L)).thenReturn(Optional.empty());
+
+        OrganizationDTO organizationDTO = new OrganizationDTO();
+        organizationDTO.setName("Updated Organization");
+        OrganizationDTO updatedOrganization = organizationService.updateOrganization(1L, organizationDTO);
+
+        assertNull(updatedOrganization);
     }
 
     @Test

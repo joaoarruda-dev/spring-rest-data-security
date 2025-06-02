@@ -152,6 +152,11 @@
 									<formats>
 										<format>XML</format>
 									</formats>
+									<excludes>
+										<exclude>**/config/**</exclude>
+										<exclude>**/dto/**</exclude>
+										<exclude>**/converter/**</exclude>
+									</excludes>
 								</configuration>
 							</execution>
 						</executions>
