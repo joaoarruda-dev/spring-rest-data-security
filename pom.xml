@@ -23,7 +23,7 @@
 		<sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
 		<sonar.projectKey>joaoarruda-dev_spring-rest-data-security</sonar.projectKey>
 		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-		<sonar.exclusions>**/config/**,**/dto/**, **/converter/**</sonar.exclusions>
+		<sonar.exclusions>**/config/**,**/dto/**, **/converter/**, **/entity/**, **/repository/**,  **/enums/**</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -156,6 +156,9 @@
 										<exclude>**/config/**</exclude>
 										<exclude>**/dto/**</exclude>
 										<exclude>**/converter/**</exclude>
+										<exclude>**/entity/**</exclude>
+										<exclude>**/repository/**</exclude>
+										<exclude>**/enums/**</exclude>
 									</excludes>
 								</configuration>
 							</execution>
